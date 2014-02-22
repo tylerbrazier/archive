@@ -1,0 +1,423 @@
+#!/usr/bin/env bash
+
+defaultRsyncOpts="-vhrtupEl"
+
+printUsage() {
+    echo "Sync or Swim"
+    echo "Usage: $(basename $0) [options...] <action> [locations...]"
+    echo "<action> can be push, pull, add, remove, or stat[us]."
+    echo "If no locations are specified, then they are all used."
+    echo "Options:"
+    echo "-h          print this help message"
+    echo "-l          list locations and their properties"
+    echo "-d <dir>    run for specified <dir>. Default is current working directory"
+    echo "-k <key>    run using specified private <key>. Default is at ~/.ssh/id_rsa"
+    echo "-m <mode>   mode override. run using <mode> for pushmode/pullmode"
+    echo "-o <opts>   use <opts> for rsync options instead of the defaults $defaultRsyncOpts"
+    echo "-a <opts>   use <opts> for rysnc options in addition to defaults $defaultRsyncOpts"
+}
+
+
+setWorkingDir() {
+    workingDir=$(readlink -f $1)
+    configDir="$workingDir/.sos"
+}
+
+
+checkWorkingDir() {
+    # check if there's a .sos directory in the working directory
+    [[ ! -d $configDir ]] && { echo "$workingDir is not an sos directory"; exit 1; }
+}
+
+
+checkInstalled() {
+    for i in "$@"; do
+        command -v $i >/dev/null 2>&1 || { echo "Cannot execute $i"; exit 1; }
+    done
+}
+
+
+listLocations() {
+    checkWorkingDir
+    for loc in $(find $configDir -name "*.location"); do
+        name="$(echo $(basename $loc) | sed 's/\(.*\)\..*/\1/')"
+        type=""
+        dir=""
+        user=""
+        host=""
+        pushmode=""
+        pullmode=""
+        source $loc
+
+        echo "Location : $name"
+        [[ ! -z "$type" ]] && echo "    Type : $type"
+        [[ ! -z "$user" ]] && echo "    User : $user"
+        [[ ! -z "$host" ]] && echo "    Host : $host"
+        [[ ! -z "$dir" ]] && echo "    Directory : $dir"
+        [[ ! -z "$pushmode" ]] && echo "    Pushmode : $pushmode"
+        [[ ! -z "$pullmode" ]] && echo "    Pullmode : $pullmode"
+    done
+}
+
+
+add() {
+    if [[ $# -eq 0 ]]; then
+        echo -n "Name of new location? "
+        read choice
+        [[ ! -z $choice ]] && add $choice
+    fi
+
+    # create config dir if it doesn't exist
+    if [[ ! -d $configDir ]]; then
+        mkdir -p $configDir 2>/dev/null || { echo "Unable to create $configDir"; exit 1; }
+        echo "Created $configDir"
+    fi
+
+    # big for loop
+    for loc in "$@"; do
+        [[ -f "$configDir/$loc.location" ]] && { echo "$loc already exists"; continue; }
+        [[ $loc == *\ * ]] && { echo "Name cannot contain spaces"; continue; }
+        echo "Adding $loc"
+
+        # determine location type
+        type=""
+        while [[ "$type" != "local" && "$type" != "remote" ]]; do
+            echo -n "Local or remote location? [l/r] "
+            read type
+            case $type in
+                [Ll]*)
+                    type="local";;
+                [Rr]*)
+                    type="remote";;
+                *)
+                    continue;;
+            esac
+        done
+
+        # if remote location, determine user and host
+        if [[ "$type" == "remote" ]]; then
+            suggestion=$(whoami)
+            user=""
+            echo -n "Remote user? [$suggestion] "
+            read user
+            [[ "$user" == "" ]] && user=$suggestion
+            host=""
+            while [[ -z $host ]]; do
+                echo -n "Remote host/IP? "
+                read host
+            done
+        fi
+
+        # determine directory
+        if [[ "$type" == "local" ]]; then
+            dir=/dev/null
+            while [[ ! -d $dir ]]; do
+                echo -n "Directory to push/pull? "
+                read dir
+                dir=$(echo $dir | sed "s|~|$HOME|")
+                dir=$(readlink -f $dir)
+            done
+        elif [[ "$type" == "remote" ]]; then
+            suggestion=$(pwd | sed "s|/home/$(whoami)|~|")
+            echo -n "Remote directory to pull/push? [$suggestion] "
+            read dir
+            [[ "$dir" == "" ]] && dir=$suggestion
+            dir=$(echo $dir | sed "s|~|/home/$user|")
+        fi
+
+        # determine pushmode
+        pushmode=""
+        while true; do
+            echo "Choose a pushmode."
+            echo "[S]oft        (Extra files at location will NOT be deleted on push.)"
+            echo "[H]ard        (Extra files at location WILL be deleted on push.)"
+            echo "[I]gnore      (This location will never be pushed to.)"
+            echo -n "Pushmode? [S/h/i] "
+            read choice
+            case $choice in
+                [Ss]*|"")
+                    pushmode=soft
+                    break;;
+                [Hh]*)
+                    pushmode=hard
+                    break;;
+                [Ii]*)
+                    pushmode=ignore
+                    break;;
+                *)
+                    continue;;
+            esac
+        done
+
+        # determine pullmode
+        pullmode=""
+        while true; do
+            echo "Choose a pullmode."
+            echo "[S]oft        (Extra files here will NOT be deleted on pull.)"
+            echo "[H]ard        (Extra files here WILL be deleted on pull.)"
+            echo "[I]gnore      (This location will never be pulled from.)"
+            echo -n "Pullmode? [S/h/i] "
+            read choice
+            case $choice in
+                [Ss]*|"")
+                    pullmode=soft
+                    break;;
+                [Hh]*)
+                    pullmode=hard
+                    break;;
+                [Ii]*)
+                    pullmode=ignore
+                    break;;
+                *)
+                    continue;;
+            esac
+        done
+
+        # ask to generate key if it doesn't exist and ask to upload it
+        if [[ "$type" == "remote" ]]; then
+            key=$(readlink -f $key)
+            if [[ ! -r $key ]]; then
+                while true; do
+                    echo -n "Generate ssh key? [Y/n] "
+                    read choice
+                    case $choice in
+                        [Yy]*|"")
+                            defaultComment="SosKey"
+                            echo -n "Choose a comment in key. [$defaultComment] "
+                            read keyComment
+                            [[ -z $keyComment ]] && keyComment=$defaultComment
+                            echo "ssh-keygen -t rsa -f $key -C $keyComment"
+                            ssh-keygen -t rsa -f $key -C $keyComment
+                            break;;
+                        [Nn]*)
+                            break;;
+                        *)
+                            continue;;
+                    esac
+                done
+            fi
+            if [[ -r $key ]]; then
+                while true; do
+                    echo -n "Upload $key.pub to $host? [y/n] "
+                    read choice
+                    case $choice in
+                        [Yy]*)
+                            echo "ssh-copy-id -i $key.pub $user@$host"
+                            ssh-copy-id -i $key.pub $user@$host >/dev/null
+                            break;;
+                        [Nn]*)
+                            break;;
+                        *)
+                            continue;;
+                    esac
+                done
+                while true; do
+                    echo -n "Test connection? [Y/n] "
+                    read choice
+                    case $choice in
+                        [Yy]*|"")
+                            ssh $user@$host exit >/dev/null && echo "Success :)" || echo "Fail"
+                            break;;
+                        [Nn]*)
+                            break;;
+                        *)
+                            continue;;
+                    esac
+                done
+            fi
+        fi
+       
+        # create the location file
+        echo "# Sync or swim location" > "$configDir/$loc.location" || {
+          echo "Failed to create $loc"; continue; }
+        echo "type=$type" >> "$configDir/$loc.location"
+        [[ ! -z $user ]] && echo "user=$user" >> "$configDir/$loc.location"
+        [[ ! -z $host ]] && echo "host=$host" >> "$configDir/$loc.location"
+        echo "dir=$dir" >> "$configDir/$loc.location"
+        echo "pushmode=$pushmode" >> "$configDir/$loc.location"
+        echo "pullmode=$pullmode" >> "$configDir/$loc.location"
+        echo "Created location $loc"
+    done
+}
+
+
+remove() {
+    checkWorkingDir
+    if [[ $# -eq 0 ]]; then
+        while true; do
+            echo -n "Remove all locations? [y/N] "
+            read choice
+            case $choice in
+                [Yy]*)
+                    locs=$(ls -1 $configDir | grep .location | sed 's/\(.*\)\..*/\1/')
+                    # regex is for stripping the .location extension (thanks Mike)
+                    [[ ${#locs} -gt 0 ]] && remove $locs
+                    break;;
+                [Nn]*|"")
+                    break;;
+            esac
+        done
+    fi
+    for loc in "$@"; do
+        rm "$configDir/$loc.location" && echo "Removed $loc" || echo "Could not remove $loc"
+    done
+}
+
+
+push() {
+    checkWorkingDir
+    # if no arguments given and config dir isn't empty, call again with all locations
+    if [[ $# -eq 0 && $(ls $configDir | grep -c .location) -gt 0 ]]; then 
+        push $(ls -1 $configDir | grep .location | sed 's/\(.*\)\..*/\1/')
+    fi
+
+    for loc in "$@"; do
+        localOpts=${rsyncOpts}
+        type=""
+        dir=""
+        user=""
+        host=""
+        pushmode=""
+        source "$configDir/$loc.location"
+        [[ ! -z $modeOverride ]] && pushmode=$modeOverride
+        [[ "$pushmode" == "ignore" ]] && { echo "Ignoring $loc"; continue; }
+        [[ "$pushmode" == "hard" ]] && { localOpts="${rsyncOpts} --del"; }
+
+        echo ">>>> Pushing to $loc"
+        if [[ "$type" == "local" && -d $dir ]]; then
+            echo "rsync --exclude=.sos $localOpts $workingDir/ $dir"
+            rsync --exclude=.sos $localOpts $workingDir/ $dir
+        elif [[ "$type" == "remote" ]]; then
+            echo "rsync -e \"ssh -i $key\" --exclude=.sos $localOpts $workingDir/ $user@$host:$dir"
+            rsync -e "ssh -i $key" --exclude=.sos $localOpts $workingDir/ $user@$host:$dir
+        else
+            echo "Unable to push to $loc"
+            continue
+        fi
+        echo
+    done
+}
+
+
+pull() {
+    checkWorkingDir
+    # if no arguments given and config dir isn't empty, call again with all locations
+    if [[ $# -eq 0 && $(ls $configDir | grep -c .location) -gt 0 ]]; then
+        pull $(ls -1 $configDir | grep .location | sed 's/\(.*\)\..*/\1/')
+    fi
+
+    for loc in "$@"; do
+        localOpts=${rsyncOpts}
+        type=""
+        dir=""
+        user=""
+        host=""
+        pullmode=""
+        source "$configDir/$loc.location"
+        [[ ! -z $modeOverride ]] && pullmode=$modeOverride
+        [[ "$pullmode" == "ignore" ]] && { echo "Ignoring $loc"; continue; }
+        [[ "$pullmode" == "hard" ]] && { localOpts="${rsyncOpts} --del"; }
+
+        echo "<<<< Pulling from $loc"
+        if [[ "$type" == "local" && -d $dir ]]; then
+            echo "rsync --exclude=.sos $localOpts $dir/ $workingDir"
+            rsync --exclude=.sos $localOpts $dir/ $workingDir
+        elif [[ "$type" == "remote" ]]; then
+            echo "rsync -e \"ssh -i $key\" --exclude=.sos $localOpts $user@$host:$dir/ $workingDir"
+            rsync -e "ssh -i $key" --exclude=.sos $localOpts $user@$host:$dir/ $workingDir
+        else
+            echo "Unable to pull from $loc"
+            continue
+        fi
+        echo
+    done
+}
+
+
+status() {
+    checkWorkingDir
+    rsyncOpts="$rsyncOpts -n"
+    echo "Starting dry run."
+    pull "$@"
+    push "$@"
+    echo "Finished dry run. No changes made."
+}
+
+
+handleArgs() {
+    [[ $# -eq 0 ]] && { printUsage; exit 0; }
+
+    opts=""
+    while getopts "hld:k:m:o:a:" opt; do
+        case "$opt" in
+            h)
+                opts="${opts}h";;
+            l)
+                opts="${opts}l";;
+            d)
+                [[ -d $OPTARG ]] && setWorkingDir $OPTARG || { echo "Can't find $OPTARG"; exit 1; }
+                opts="${opts}d";;
+            k)
+                [[ -r $OPTARG ]] && key=$OPTARG || { echo "Unable to read $OPTARG"; exit 1; }
+                opts="${opts}k";;
+            m)
+                if [[ $OPTARG == [Hh][Aa][Rr][Dd] ]]; then
+                    modeOverride="hard"
+                elif [[ $OPTARG == [Ss][Oo][Ff][Tt] ]]; then
+                    modeOverride="soft"
+                elif [[ $OPTARG == [Ii][Gg][Nn][Oo][Rr][Ee] ]]; then
+                    modeOverride="ignore"
+                else
+                    echo "No mode \"$OPTARG\""; exit 1;
+                fi
+                opts="${opts}m";;   
+            o)
+                rsyncOpts=$OPTARG
+                opts="${opts}o";;
+            a)
+                [[ ! -z "$extraOpts" ]] && extraOpts="${extraOpts} " # add a space
+                extraOpts="${extraOpts}$OPTARG"
+                opts="${opts}a";;
+            *)
+                printUsage
+                exit 1;;
+        esac
+    done
+    [[ "$opts" != *d* ]] && setWorkingDir $(pwd)
+    [[ "$opts" == *h* ]] && printUsage
+    [[ "$opts" == *l* ]] && listLocations
+    [[ "$opts" != *k* ]] && key=$HOME/.ssh/id_rsa
+    [[ "$opts" != *m* ]] && modeOverride=""
+    [[ "$opts" != *o* ]] && rsyncOpts=$defaultRsyncOpts
+    [[ "$opts" == *a* ]] && rsyncOpts="${rsyncOpts} $extraOpts"
+    shift $((OPTIND - 1))
+    
+    # check action
+    if [[ $# -gt 0 ]]; then
+        case "$1" in
+            add)
+                shift 1
+                add "$@";;
+            remove)
+                shift 1
+                remove "$@";;
+            push)
+                shift 1
+                push "$@";;
+            pull)
+                shift 1
+                pull "$@";;
+            stat|status)
+                shift 1
+                status "$@";;
+            *)
+                echo "No action \"$1\""
+                printUsage
+                exit 1;;
+        esac
+    fi
+}
+
+#checkInstalled rsync ssh ssh-copy-id ssh-keygen
+handleArgs "$@"
+

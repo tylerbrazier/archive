@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<student>
+	<course>
+		<prefix>SE</prefix>
+		<number>2050</number>
+		<title>Programming I</title>
+		<semester>Fall</semester>
+		<year>2008</year>
+		<grade>3.5</grade>
+	</course>
+	<course>
+		<prefix>SE</prefix>
+		<number>3145</number>
+		<title>XML</title>
+		<semester>Spring</semester>
+		<year>2010</year>
+		<grade>3.0</grade>
+	</course>
+	<course>
+		<prefix>SE</prefix>
+		<number>2300</number>
+		<title>Software Construction</title>
+		<semester>Spring</semester>
+		<year>2010</year>
+		<grade>4.0</grade>
+	</course>
+</student>

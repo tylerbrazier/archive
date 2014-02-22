@@ -1,0 +1,103 @@
+//Javacc program by Tyler Brazier
+//This generates a parser/lexical analyzer for grades.xml file
+//javacc grades.jj (will generate ./grades/ directory)
+//then you need to compile those files
+//cd grades
+//javac *.java
+//and run it
+//java Grades ../grades.xml
+options
+{
+	//put all the files generated into a directory called "grades"
+	OUTPUT_DIRECTORY = "grades";
+}
+
+PARSER_BEGIN(Grades)
+
+	import java.io.*;
+	
+	class Grades
+	{
+		public static void main(String[] args) throws ParseException, TokenMgrError, FileNotFoundException
+		{
+			Reader r = new FileReader(args[0]);
+			Grades parser = new Grades(r);
+			parser.Start();
+		}
+	}	
+
+PARSER_END(Grades)
+
+//these next two lines are saying to skip those characters in these states
+<IN_STUDENT, IN_COURSE, DATA_READY, DEFAULT>
+SKIP: { "\n" | "\r" | "\r\n" | "\t" | " " }
+
+SKIP: { <PROCESSING_INSTRUCTION: "<?" (~["?"])* "?>"> } //skip the processing instruction
+
+TOKEN: { <STUDENT: "<student>"> : IN_STUDENT } //if you find "<student>" token, name it STUDENT and move into the IN_STUDENT state
+
+<IN_STUDENT> //while in the IN_STUDENT state...
+TOKEN: 
+{ 
+	//you can fine either of these tokens
+	<COURSE: "<course>"> : IN_COURSE 
+	| <END_STUDENT: "</student>"> : DEFAULT
+}
+
+<IN_COURSE>
+TOKEN: 
+{
+	<PREFIX: "<prefix>"> : DATA_READY
+	| <END_PREFIX: "</prefix>">
+	| <NUMBER: "<number>"> : DATA_READY
+	| <END_NUMBER: "</number>">
+	| <TITLE: "<title>"> : DATA_READY
+	| <END_TITLE: "</title>">
+	| <SEMESTER: "<semester>"> : DATA_READY
+	| <END_SEMESTER: "</semester>">
+	| <YEAR: "<year>"> : DATA_READY
+	| <END_YEAR: "</year>">
+	| <GRADE: "<grade>"> : DATA_READY
+	| <END_GRADE: "</grade>">
+	| <END_COURSE: "</course>"> : IN_STUDENT
+}
+
+<DATA_READY>
+TOKEN:
+{
+	<DATA: (~["<"])*> : IN_COURSE //accept any token other than "<" zero or more times
+}
+
+void Start(): //start parsing
+{
+	Token t;
+}
+{
+	<STUDENT> //first I expect to find a <STUDENT> token
+	(
+		<COURSE>//then i expect to find a <COURSE> token
+			<PREFIX>
+				//i expect to find a <DATA> token and i will assign it to t
+				//then print out that token's image
+				t = <DATA>{System.out.println("Prefix: " + t.image);} 
+			<END_PREFIX>
+			<NUMBER>
+				t = <DATA>{System.out.println("Number: " + t.image);}
+			<END_NUMBER>
+			<TITLE>
+				t = <DATA>{System.out.println("Title: " + t.image);}
+			<END_TITLE>
+			<SEMESTER>
+				t = <DATA>{System.out.println("Semester: " + t.image);}
+			<END_SEMESTER>
+			<YEAR>
+				t = <DATA>{System.out.println("Year: " + t.image);}
+			<END_YEAR>
+			<GRADE>
+				t = <DATA>{System.out.println("Grade: " + t.image);}
+			<END_GRADE>
+		<END_COURSE>{System.out.println();}
+	)*
+	<END_STUDENT>
+	<EOF>
+}

@@ -1,0 +1,5 @@
+demonstrates MVC pattern. when the program starts, there are two windows.
+click in a window to create a ball that bounces off the walls. both windows are
+display the same thing. a window won't begin to be updated until it has at 
+least one ball inside. windows can be resized and a ball will bounce off the 
+wall of the window it was created in.

@@ -1,0 +1,14 @@
+Pacman - A quick & dirty game written in javascript that I made in collage.
+
+Follow these steps to set up hosting for Pacman on a Linux/Unix host.
+
+You will need a database and a single table for storing player names, scores,
+and times. You will also need to modify a file to work with your new database
+setup.
+
+$ cd <web root>/pacman
+# cp conf.php.example conf.php
+
+Now edit the values in conf.php to match your database and table setup.
+A note to developers: conf.php is already listed in .gitignore so that private
+database information isn't made public incase you push to a public repo.
