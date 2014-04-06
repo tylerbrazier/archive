@@ -1,0 +1,16 @@
+{
+    "rsync_flags": "irtupEl",
+
+    "reflections" : [
+        {
+            "name":   "first_example",
+            "local":  "/dirs/end/with/slash/",
+            "remote": "me@example.com:~/dest/"
+        },
+        {
+            "name":   "second_example",
+            "local":  "$HOME/.mirrorworksrc.json",
+            "remote": "/public/mirrorworksrc.json"
+        }
+    ]
+}

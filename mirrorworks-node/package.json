@@ -1,0 +1,24 @@
+{
+  "name": "mirrorworks",
+  "version": "0.0.3",
+  "description": "A handy rsync wrapper cli tool.",
+  "main": "mirrorworks.js",
+  "dependencies": {
+    "commander": "~2.1.0",
+    "rsync": "~0.3.0"
+  },
+  "keywords": [
+    "mirrorworks",
+    "mirror",
+    "works",
+    "directory",
+    "sync",
+    "rsync"
+  ],
+  "author": "Tyler Brazier",
+  "license": "MIT",
+  "homepage": "https://github.com/tylerbrazier/archive/tree/master/mirrorworks-node",
+  "bin": {
+    "mirrorworks": "./mirrorworks.js"
+  }
+}
