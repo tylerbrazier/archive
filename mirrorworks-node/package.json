@@ -1,6 +1,6 @@
 {
   "name": "mirrorworks",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A handy rsync wrapper cli tool.",
   "main": "mirrorworks.js",
   "dependencies": {

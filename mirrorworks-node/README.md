@@ -12,8 +12,10 @@ and
 
 Development Status
 ------------------
-This is the node.js implementation. I'm planning on implementing it in ruby
-also because of a couple of reasons:
+This is the node.js implementation. It's not maintained anymore but there is
+a ruby implementation at <https://github.com/tylerbrazier/mirrorworks> and
+a mirrorworks gem. I decided to implement in ruby because of a couple of
+reasons:
 
 * Since the calls to rsync are asynchronous, there are problems if rsync ever
 prompts for anything like host verification, passwords, or passphrases. To fix
@@ -26,9 +28,9 @@ is that node is not supported by cygwin since windows has a native
 implementation for node. It's a big mess and getting things to work correctly
 together is probably more of a hassle than it's worth.
 
-So, since the script needs to be rewritten anyway, it seems the best option is
-to re-implement it in another language that can be used in unix/linux and
-cygwin. This will probably be the final version of this node implementation :(
+So, since the script needed to be rewritten anyway, it seems the best option
+was to re-implement it in another language that can be used in unix/linux and
+cygwin. This is the final version of this node implementation :(
 
 Installation and Configuration
 ------------------------------
