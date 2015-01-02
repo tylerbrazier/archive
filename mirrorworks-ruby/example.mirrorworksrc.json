@@ -1,0 +1,25 @@
+{
+  "rsync_opts": [
+    "-rtupEl",
+    "--backup",
+    "--exclude=.git/*",
+    "--backup-dir=$HOME/.backup",
+    "--suffix=.$(date +%Y-%m-%d-%H-%M)"
+  ],
+
+  "reflections": [
+    {
+      "name":     "first_example",
+      "local":    "/dirs/end/with/slash/",
+      "remote":   "me@example.com:~/dest/",
+      "pullmode": "soft"
+    },
+    {
+      "name":     "second_example",
+      "local":    "$HOME/.mirrorworksrc.json",
+      "remote":   "/public/mirrorworksrc.json",
+      "pushmode": "hard",
+      "pullmode": "ignore"
+    }
+  ]
+}
