@@ -1,0 +1,3 @@
+Decided to reimplement mirrorworks (again for the 3rd time) in python.
+Renamed 'reflections' to 'bindings'.
+I'm archiving this because i've decided to use git for doing sync instead.
