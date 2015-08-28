@@ -1,0 +1,23 @@
+# https://docs.docker.com/articles/dockerfile_best-practices/
+
+FROM debian:stable
+MAINTAINER Intelligent Insites
+
+# zookeeper depends on java
+RUN apt-get update && apt-get install -y openjdk-7-jre
+
+copy zookeeper-3.4.6.tar.gz zoo.cfg /root/
+RUN cd /root \
+    && tar -xzf zookeeper-3.4.6.tar.gz \
+    && mv zookeeper-3.4.6 zookeeper \
+    && mv zoo.cfg zookeeper/conf
+
+# Zookeeper data directory. This will be set by setup.sh
+RUN mkdir -p $zk_container_data
+
+# Port to expose. This will be set by setup.sh
+EXPOSE $zk_port
+
+# default execution for the container
+# https://docs.docker.com/reference/builder/#cmd
+CMD ["/root/zookeeper/bin/zkServer.sh", "start-foreground"]

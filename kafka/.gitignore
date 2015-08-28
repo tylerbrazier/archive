@@ -1,0 +1,5 @@
+# Each of these will be created with specific values by its respective .template
+zookeeper_build/Dockerfile
+zookeeper_build/zoo.cfg
+kafka_build/Dockerfile
+kafka_build/server.properties

@@ -1,0 +1,23 @@
+# https://docs.docker.com/articles/dockerfile_best-practices/
+
+FROM debian:stable
+MAINTAINER Intelligent Insites
+
+# zookeeper depends on java
+RUN apt-get update && apt-get install -y openjdk-7-jre
+
+COPY kafka_2.9.2-0.8.1.1.tgz server.properties /root/
+RUN cd /root \
+    && tar -xzf kafka_2.9.2-0.8.1.1.tgz \
+    && mv kafka_2.9.2-0.8.1.1 kafka \
+    && mv server.properties kafka/config
+
+# Kafka data directory. This will be set by setup.sh
+RUN mkdir -p $kafka_container_data
+
+# Port to expose. This will be set by setup.sh
+EXPOSE $kafka_port
+
+# default execution for the container
+# https://docs.docker.com/reference/builder/#cmd
+CMD ["/root/kafka/bin/kafka-server-start.sh", "/root/kafka/config/server.properties"]

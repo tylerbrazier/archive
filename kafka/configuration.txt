@@ -1,0 +1,62 @@
+#!/bin/bash
+
+# Edit this file before running setup.sh.
+# Values should be surrounded in single quotes.
+
+
+####### Global configuration ######
+
+# Path to boot2docker install folder
+b2d_dir='C:\Program Files\Boot2Docker for Windows'
+
+# Path to virtualbox install folder
+vbox_dir='C:\Program Files\Oracle\VirtualBox'
+
+
+####### Zookeeper configuration #######
+
+# Path to the shared folder for storing persistent zookeeper data.
+# It will be created by setup.sh if it doesn't exist.
+zk_host_data='C:\zkdat'
+
+# Name and tag for the zookeeper docker image. The tag should be changed if
+# the Dockerfile for the image is updated. The tag should only contain
+# letters, numbers, and underscores.
+# You shouldn't need to change the image.
+zk_image='insites/zk'
+zk_tag='v0'
+
+# Zookeeper's listening port (default=2181)
+zk_port='2181'
+
+# The defaults here are fine - you shouldn't need to change them.
+# These specify the name for the folder share and locations where shared
+# folders will be mounted in boot2docker and in the container.
+zk_share='zookeeper-share'
+zk_b2d_data='/var/zookeeper-data'
+zk_container_data='/var/zookeeper-data'
+
+
+###### Kafka configuration ######
+
+# Path to the shared folder for storing persistent kafka data.
+# It will be created by setup.sh if it doesn't exist.
+kafka_host_data='C:\kafdat'
+
+# Name and tag for the kafka docker image. The tag should be changed if
+# the Dockerfile for the image is updated. The tag should only contain
+# letters, numbers, and underscores.
+# You shouldn't need to change the image.
+kafka_image='insites/kafka'
+kafka_tag='v0'
+
+# Kafka's listening port (default=9092)
+kafka_port='9092'
+
+# The defaults here are fine - you shouldn't need to change them.
+# These specify the name for the folder share and locations where shared
+# folders will be mounted in boot2docker and in the container.
+kafka_share='kafka-share'
+kafka_b2d_data='/var/kafka-data'
+kafka_container_data='/var/kafka-data'
+
