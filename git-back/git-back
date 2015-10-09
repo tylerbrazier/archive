@@ -1,0 +1,124 @@
+# This file defines a `git back` alias that can be used to backup and sync
+# directories using git. You can source this in your ~/.gitconfig like:
+#
+#   [include]
+#     path = /path/to/this/file
+#
+# See the README for more info.
+
+[alias]
+back = "!\
+\
+branch='_backed'; \
+remote_ns='backed'; \
+\
+fail() { \
+  echo \"Failed; $1\" >&2; exit 1; \
+}; \
+\
+validate_repo() { \
+  dirty; [ $? -eq 128 ] && exit 1; \
+  if ! git show-ref -q --verify refs/heads/$branch; then \
+    fail \"no $branch branch.\"; \
+  fi; \
+  if [ \"$(git symbolic-ref HEAD)\" = \"refs/heads/$branch\" ]; then \
+    fail \"the $branch branch is checked out.\"; \
+  fi; \
+}; \
+\
+dirty() { \
+  n=$(git status --porcelain) && [ -n \"$n\" ]; \
+}; \
+\
+remotes() { \
+  git remote | grep \"^$remote_ns/\"; \
+}; \
+\
+head() { \
+  git symbolic-ref --short HEAD; \
+}; \
+\
+back_here() { \
+  dirty 2>/dev/null; [ $? -ne 128 ] && fail 'this is already a git repo.'; \
+  initial_commit() { \
+    msg=\"Initial commit on $(hostname)\"; \
+    git commit --allow-empty -m \"$msg\" || exit 1; \
+  }; \
+  mkbranch() { \
+    echo \"Creating branch $branch\"; \
+    git branch --no-track $branch; \
+  }; \
+  update_branches() { \
+    r=\"$remote_ns/origin/$branch\"; \
+    if [ -n \"$(git branch -a | grep $r)\" ]; then \
+      echo \"Merging $r into $branch\"; \
+      git fetch . \"$r:$branch\" || exit 1; \
+      echo \"Merging $branch into $(head)\"; \
+      git merge --no-edit $branch; \
+    fi; \
+  }; \
+  if [ $# -eq 0 ]; then \
+    git init && git add -A && initial_commit && mkbranch; \
+  elif [ $# -eq 1 ]; then \
+    if ! git clone -b master -o \"$remote_ns/origin\" \"$1\" .; then \
+      fail 'make sure your current working directory is empty.'; \
+    fi; \
+    git branch --unset-upstream; \
+    mkbranch && update_branches; \
+  elif [ $# -gt 1 ]; then \
+    fail 'usage: git back here [<repo to clone>]'; \
+  fi; \
+}; \
+\
+back_down() { \
+  validate_repo; \
+  dirty && { echo 'Stashing files'; git stash -u >/dev/null; }; \
+  stashed=$?; \
+  if [ -n \"$(remotes)\" ]; then \
+    head=\"$(head)\"; \
+    git checkout \"$branch\"; \
+    for r in $(remotes); do \
+      echo \"Fetching $r...\"; \
+      git fetch \"$r\"; \
+    done; \
+    for b in $(git branch -r | grep \"$remote_ns/.*/$branch\"); do \
+      echo \"Merging $b...\"; \
+      git merge --no-edit \"$b\" || exit 1; \
+    done; \
+    git checkout \"$head\"; \
+  fi; \
+  echo \"Merging $branch into $(head)\"; \
+  git merge --no-edit \"$branch\"; \
+  [ $stashed -ne 0 ] || { echo 'Popping stash'; git stash pop >/dev/null; }; \
+}; \
+\
+back_up() { \
+  validate_repo; \
+  if dirty; then \
+    git add -A && git commit -m \"$(hostname)\"; \
+  else \
+    echo 'No local changes to commit'; \
+  fi; \
+  echo \"Merging $(head) into $branch\"; \
+  git fetch . \"HEAD:$branch\" || fail 'try `git back down` first'; \
+  [ -z \"$(remotes)\" ] && echo \"No $remote_ns/ remotes to push to\"; \
+  for r in $(remotes); do \
+    echo \"Pushing $r...\"; \
+    git push \"$r\" \"$branch:$branch\" || fail 'try `git back down` first'; \
+  done; \
+}; \
+\
+back () { \
+  if [ $# -eq 0 ]; then \
+    back_down && back_up; \
+  elif [ \"$1\" = 'here' ]; then \
+    shift 1 && back_here \"$@\"; \
+  elif [ \"$1\" = 'up' ]; then \
+    back_up; \
+  elif [ \"$1\" = 'down' ]; then \
+    back_down; \
+  else \
+    fail 'usage: git back [here|up|down]'; \
+  fi \
+}; \
+back"
