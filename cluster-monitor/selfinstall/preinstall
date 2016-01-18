@@ -1,0 +1,4 @@
+if [[ $(id -u) = 0 || $HOME != "/home/insites" || $(pwd) != $HOME ]]; then
+  echo "Run this as user 'insites' in your home directory"
+  exit 1
+fi

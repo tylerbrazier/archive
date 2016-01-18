@@ -1,0 +1,2 @@
+echo "Running postinstall"
+sudo puppet apply cluster-monitor/configure.pp

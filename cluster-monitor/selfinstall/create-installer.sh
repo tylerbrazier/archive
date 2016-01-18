@@ -12,8 +12,9 @@ rm -rf ${work}
 mkdir -p ${work}
 cd ${work}
 
-# archive the payload
-tar -czf payload.tar.gz -C ${payload} .
+# archive the payload, following links instead of archiving them
+mkdir -p ${payload}
+tar --dereference -czf payload.tar.gz -C ${payload} .
 
 # build the installer file
 cat > ${installer} <<INSTALLER

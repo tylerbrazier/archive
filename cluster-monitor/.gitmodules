@@ -1,0 +1,3 @@
+[submodule "packages/statsd"]
+	path = packages/statsd
+	url = https://github.com/etsy/statsd.git
