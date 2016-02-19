@@ -1,0 +1,77 @@
+/* needed to compensate for fixed navbar.
+   see http://getbootstrap.com/components/#navbar-fixed-top */
+body {
+  padding-top: 50px;
+}
+
+#meat {
+  max-width: 650px;
+}
+
+#list {
+  position: fixed;
+  left: -250px;
+  width: 250px;
+  /* this might need to be higher */
+  z-index: 1;
+}
+
+#toggle-list-button {
+  margin-right: 15px;
+}
+
+#help-link {
+  padding-right: 8px;
+}
+
+/* ghost buttons only show the icon */
+.ghost-button {
+  background: transparent;
+  border: none;
+}
+.ghost-button:focus {
+  background: transparent;
+}
+.ghost-button:hover {
+  background: transparent;
+}
+
+/* keep the same spacing between name field, button, and body field */
+#save-div {
+  padding-left: 0;
+}
+
+.glyphicon {
+  /* glyphs don't seem to be vertically aligned by default */
+  vertical-align: middle;
+  /* and they're small */
+  font-size: 18px;
+}
+
+/* keep same spacing between error message and other form controls */
+#error {
+  margin-top: 15px;
+  margin-bottom: 0;
+}
+
+/* make sure long doc names don't trail off */
+.doc-list-item {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.doc-list-item > .doc-link {
+  vertical-align: middle;
+  /* add some space between the delete button and the doc link */
+  margin-left: 5px;
+}
+
+#create-field {
+  /* inline-block so that it lines up after the create button */
+  display:inline-block;
+  vertical-align: middle;
+  /* shrink width to fit well in the side list */
+  width: 160px;
+}
+
+

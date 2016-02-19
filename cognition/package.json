@@ -1,0 +1,37 @@
+{
+  "name": "cognition",
+  "description": "A simple web service for storing and fetching information",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tylerbrazier/cognition.git"
+  },
+  "dependencies": {
+    "async": "^1.4.0",
+    "basic-auth": "^1.0.3",
+    "bcrypt": "^0.8.4",
+    "body-parser": "^1.13.2",
+    "bootstrap": "^3.3.5",
+    "ejs": "^2.3.4",
+    "express": "^4.13.1",
+    "gulp": "^3.9.0",
+    "gulp-less": "^3.0.3",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-replace": "^0.5.4",
+    "jquery": "^2.1.4",
+    "mongoose": "^4.1.0",
+    "serve-favicon": "^2.3.0",
+    "serve-index": "^1.7.1"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5",
+    "should": "^7.0.2",
+    "supertest": "^1.0.1"
+  },
+  "scripts": {
+    "test": "mocha --bail test/",
+    "start": "node bin/server.js",
+    "gulp": "gulp"
+  }
+}

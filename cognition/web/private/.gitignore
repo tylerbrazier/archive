@@ -1,0 +1,3 @@
+# ignore everything else in this dir
+*
+!.gitignore

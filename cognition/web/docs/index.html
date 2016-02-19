@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Documents</title>
+
+    <!-- TODO use min css when node is updated -->
+    <link rel="stylesheet" href="/resources/css/bootstrap.css">
+    <link rel="stylesheet" href="/resources/css/docs.css">
+
+  </head>
+  <body>
+
+    <!-- navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div id="top-container" class="container-fluid">
+        <a href="#" id="toggle-list-button"
+                class="ghost-button btn btn-default navbar-btn navbar-left">
+          <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </a>
+        <div class="navbar-brand navbar-left">Documents</div>
+        <a href="/docs/help.html" id="help-link"
+           class="navbar-link navbar-text navbar-right">API</a>
+      </div>
+    </nav>
+
+
+    <!-- side list -->
+    <ul id="list" class="list-group">
+      <li id="create-li" class="list-group-item">
+        <a href="#" id="create-btn"
+           class="ghost-button btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-plus"></span>
+        </a>
+        <input id="create-field" type="text" class="form-control"
+               placeholder="Create...">
+      </li>
+    </ul>
+
+
+    <!--main content-->
+    <div id="meat" class="container-fluid">
+      <div class="form-horizontal">
+
+        <!-- error message -->
+        <div class="form-group">
+          <div class="col-xs-12">
+            <div id="error" class="alert alert-danger">
+              <a href="#" id="close-err-btn" class="close">
+                <span class="glyphicon glyphicon-remove"></span>
+              </a>
+              <span id="err-msg"></span>
+            </div>
+          </div>
+        </div>
+
+        <!--name field and save button-->
+        <div class="form-group">
+          <div class="col-xs-10">
+            <input id="name" type="text"
+                   class="form-control" placeholder="Name">
+          </div>
+          <div id="save-div" class="col-xs-2">
+            <a href="#" id="save" class="btn btn-success form-control">
+              <span class="glyphicon glyphicon-ok"></span>
+            </a>
+          </div>
+        </div>
+
+        <!--body textarea-->
+        <div class="form-group">
+          <div class="col-xs-12">
+            <textarea id="body" class="form-control"
+                      rows="16" placeholder="Body"></textarea>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <script src="/resources/js/jquery.min.js"></script>
+    <script src="/resources/js/docs.js"></script>
+
+  </body>
+</html>

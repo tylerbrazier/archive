@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Documents API</title>
+    <link rel="stylesheet" href="/resources/css/basic.css" type="text/css">
+  </head>
+  <body>
+    <h1>Documents API</h1>
+
+    <p>This is a simple JSON API for storing generic documents.
+    Each document has a <code>name</code> and a <code>body</code>.</p>
+
+    <p>The route can be found at <a href="/api/docs">/api/docs</a>.
+    Note that it requires basic authorization and is secured with TLS
+    (the <code>curl</code> examples below omit the <code>-u</code>
+    and <code>-k</code> options but you may need them). You may also need to
+    specify an alternative HTTPS port (the default is 8443).</p>
+
+    <h3>GET /api/docs</h3>
+    <p>Returns all of your documents; e.g.:</p>
+    <pre><code>
+    curl https://host/api/docs
+
+    [
+      { "name": "todo", "body": "1. eat\n2. sleep\n3. code" },
+      { "name": "How_To_Be_A_Champion", "body": "Be Arnold" },
+      ...
+    ]
+    </code></pre>
+
+    <h3>GET /api/docs/:name</h3>
+    <p>Fetch a document by name; e.g.:</p>
+    <pre><code>
+    curl https://host/api/docs/todo
+
+    {
+      "name": "todo",
+      "body": "1. eat\n2. sleep\n3. code"
+    }
+    </code></pre>
+
+    <h3>POST /api/docs</h3>
+    <p>Create a new document; e.g.:</p>
+    <pre><code>
+    curl https://host/api/docs \
+    -d '{"name": "notes", "body": "today was a good day"}'
+    </code></pre>
+    <p><code>name</code> is required, must be unique, and can only contain
+    letters, numbers, dashes, and underscores. The created document will be
+    returned.</p>
+
+    <h3>PUT /api/docs/:name</h3>
+    <p>Update an existing document; e.g.:</p>
+    <pre><code>
+    curl https://host/api/docs/notes -X PUT \
+    -d '{"name": "notes", "body": "today was most excellent"}'
+    </code></pre>
+    <p>The updated document will be returned.</p>
+
+    <h3>DELETE /api/docs/:name</h3>
+    <p>Delete a document; e.g.:</p>
+    <pre><code>
+    curl https://host/api/docs/todo -X DELETE
+    </code></pre>
+    <p>The deleted document will be returned.</p>
+
+    <h2>Errors</h2>
+    <p>When there is an error for whatever reason, the appropriate status code
+    will be set on the response and an array of error objects will be returned.
+    Each contains a <code>message</code> and possibly a <code>field</code> if
+    the error pertains to a particular field; e.g.:</p>
+    <pre><code>
+    curl https://host/api/docs -d '{"body":"asdf"}'
+
+    [
+      { "message": "Name is required.", "field": "name" }
+    ]
+    </code></pre>
+
+  </body>
+</html>
