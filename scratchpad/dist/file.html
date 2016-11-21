@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no">
+
+    <title>Scratchpad</title>
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="all.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="api.min.js"></script>
+    <script src="errorHandler.min.js"></script>
+    <script src="fileTitle.min.js"></script>
+    <script src="fileSaveButton.min.js"></script>
+    <script src="fileFields.min.js"></script>
+    <script src="fileController.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid">
+
+      <div class="row">
+
+        <div class="col-xs-5">
+          <input type="text"
+                 id="fileName"
+                 class="field form-control" placeholder="Name">
+        </div>
+
+        <div id="buttons" class="col-xs-7">
+          <div class="pull-right">
+            <a href="index.html" class="btn btn-default">&lt;&lt;</a>
+            <input type="button"
+                   id="fileDelete"
+                   class="btn btn-danger" value="Delete">
+            <input type="button"
+                   id="fileSave"
+                   class="btn btn-success" value="Save">
+          </div>
+        </div>
+
+      </div> <!-- /row -->
+
+      <div class="row">
+        <div class="col-xs-12">
+          <textarea id="fileContent"
+                    class="field form-control"
+                    placeholder="Remember secret gists are not private!"
+                    rows="21"></textarea>
+        </div>
+      </div> <!-- /row -->
+
+    </div> <!-- /container -->
+  </body>
+</html>

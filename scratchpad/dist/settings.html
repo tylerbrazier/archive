@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=no">
+
+    <title>Settings</title>
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="all.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="saveSettings.min.js"></script>
+    <script src="settingsFields.min.js"></script>
+  </head>
+  <body>
+    <div class="container-fluid">
+
+      <div class="row">
+
+        <div class="col-xs-4">
+          <h3>Settings</h3>
+        </div>
+
+        <div id="buttons" class="col-xs-8">
+          <div class="pull-right">
+            <a href="index.html" class="btn btn-default">&lt;&lt;</a>
+            <input id="saveSettings" type="button"
+                   class="btn btn-success" value="Save">
+          </div>
+        </div>
+
+      </div> <!-- /row -->
+
+      <div class="row" >
+        <div class="col-xs-8">
+          <div class="form-group">
+            <p>Generate a Github API token with at least <em>gist</em> scope
+            <a href="https://github.com/settings/tokens/new"
+               target="_blank">here</a> and paste it below.</p>
+            <label for="tokenField">API token</label>
+            <input id="tokenField"
+                   type="text" class="form-control" placeholder="API token">
+          </div>
+
+          <div class="form-group">
+            <p>Create a secret gist
+            <a href="https://gist.github.com/" target="_blank">here</a>
+            (or navigate to an existing one)
+            and put the gist URL or ID in the field below.</p>
+            <label for="gistField">Gist</label>
+            <input id="gistField"
+                   type="text" class="form-control" placeholder="Gist">
+          </div>
+
+          <p>Click Save to keep these in local storage.</p>
+        </div>
+      </div> <!-- /row -->
+
+    </div> <!-- /container -->
+  </body>
+</html>
