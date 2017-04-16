@@ -8,7 +8,8 @@
  * than doing one by one.
  *
  * When adding cutlines, this will also prompt for custom css for the borders
- * so you can have thicker card borders of any color to fit better in sleeves.
+ * so you can have thicker card borders of any color to fit better in sleeves;
+ * 4px is a good size, #333 is good for black borders, #fff for white
  *
  * To use this, install greasemonkey on firefox
  * https://addons.mozilla.org/en-Us/firefox/addon/greasemonkey/
