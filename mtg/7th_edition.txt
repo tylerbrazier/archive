@@ -1,3 +1,4 @@
+# source: http://www.wizards.com/magic/generic/cardlists/7e_checklist.txt
 Angelic Page
 Ardent Militia
 Blessed Reversal
