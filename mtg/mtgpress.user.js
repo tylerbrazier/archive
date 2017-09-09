@@ -9,7 +9,7 @@
  *
  * When adding cutlines, this will also prompt for custom css for the borders
  * so you can have thicker card borders of any color to fit better in sleeves;
- * 4px is a good size, #333 is good for black borders, #fff for white
+ * 3px is a good size, #333 is good for black borders, #fff for white
  *
  * To use this, install greasemonkey on firefox
  * https://addons.mozilla.org/en-Us/firefox/addon/greasemonkey/
@@ -79,8 +79,8 @@ $(function() {
   $('#cutlines').on('change', function() {
     if (this.checked) {
       var message = 'cutline css\n'
-        + '4px solid #333 is good for black borders\n'
-        + '4px solid #fff is good for white borders\n'
+        + '3px solid #333 is good for black borders\n'
+        + '3px solid #fff is good for white borders\n'
         + '1px solid #666 is the default';
       var cutlineCss = prompt(message, getCutlineCss());
       $('.carddiv.cutlines').css('border', cutlineCss);
