@@ -1,0 +1,14 @@
+{
+  "name": "linkrig",
+  "version": "0.0.0",
+  "description": "Bookmark manager using bookmarks.html file hosted on github",
+  "repository": "tylerbrazier/linkrig",
+  "license": "MIT",
+  "scripts": {
+    "test": "node tests.js"
+  },
+  "devDependencies": {
+    "eslint": "4.14.0",
+    "eslint-config-tylerbrazier": "0.0.6"
+  }
+}
