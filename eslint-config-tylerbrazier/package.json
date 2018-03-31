@@ -1,0 +1,19 @@
+{
+  "name": "eslint-config-tylerbrazier",
+  "version": "0.0.8",
+  "description": "eslint config for personal js projects",
+  "author": "Tyler Brazier <tyler@tylerbrazier.com>",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tylerbrazier/eslint-config-tylerbrazier.git"
+  },
+  "peerDependencies": {
+    "eslint": ">= 3"
+  },
+  "keywords": [
+    "eslint",
+    "eslintconfig"
+  ],
+  "license": "MIT"
+}
