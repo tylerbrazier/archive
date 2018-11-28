@@ -47,7 +47,7 @@ function tag (f, book, chap) {
   var track = id3.read(f).trackNumber // preserve the track
   var tag = {
     title: `${book} ${chapter}`,
-    artist: 'Lockman Foundation',
+    artist: 'Dale McConachie',
     album: 'NASB',
     trackNumber: track,
     image: COVER
