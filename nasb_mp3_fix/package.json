@@ -1,0 +1,13 @@
+{
+  "name": "NASB-mp3-fix",
+  "description": "Fix mp3 files from NASB mp3 CD",
+  "private": true,
+  "version": "0.0.0",
+  "dependencies": {
+    "node-id3": "^0.1.7",
+    "standard": "^12.0.1"
+  },
+  "scripts": {
+    "lint": "standard"
+  }
+}
