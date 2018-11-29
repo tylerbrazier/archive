@@ -20,8 +20,8 @@ var bookIndex = START_BOOK_INDEX
 var chapter = START_CHAPTER
 
 files.forEach((f) => {
+  // skip over processed files
   if (!f.startsWith('7613-')) {
-    // skip over processed files
     nextChapter()
     return
   }
@@ -33,6 +33,9 @@ files.forEach((f) => {
   rename(path, book, chapter)
 
   nextChapter()
+
+  // Psalm 119 spans two mp3s so stay on that chapter for the first set of verses
+  if (f === '7613-D03-173.mp3') chapter--
 })
 
 function nextChapter () {
@@ -43,8 +46,8 @@ function nextChapter () {
   }
 }
 
-function tag (f, book, chap) {
-  var track = id3.read(f).trackNumber // preserve the track
+function tag (path, book, chap) {
+  var track = id3.read(path).trackNumber // preserve the track
   var tag = {
     title: `${book} ${chapter}`,
     artist: 'Dale McConachie',
@@ -53,19 +56,27 @@ function tag (f, book, chap) {
     image: COVER
   }
 
-  console.log(`Tagging ${f}: ${JSON.stringify(tag, null, 2)}`)
-  id3.write(tag, f)
+  // Psalm 119 spans two mp3s so tag them specially
+  if (path.endsWith('D03-173.mp3')) tag.title += ':1-93'
+  if (path.endsWith('D03-174.mp3')) tag.title += ':94-176'
+
+  console.log(`Tagging ${path}: ${JSON.stringify(tag, null, 2)}`)
+  id3.write(tag, path)
 }
 
-function rename (f, book, chap) {
+function rename (path, book, chap) {
   // pad the chapter (Psalms has 150 chapters so it needs extra padding)
   var len = (book === 'Psalms' ? 3 : 2)
   var pChap = String(chap).padStart(len, '0')
 
-  var dest = f
+  // Psalm 119 spans two mp3s so name them specially
+  if (path.endsWith('D03-173.mp3')) pChap += '_1-93'
+  if (path.endsWith('D03-174.mp3')) pChap += '_94-176'
+
+  var dest = path
     .replace('7613-', '') // no idea why they start with this
     .replace(/\.mp3/, `-${book.replace(/\s/g, '_')}-${pChap}.mp3`)
 
-  console.log(`${f} -> ${dest}`)
-  fs.renameSync(f, dest)
+  console.log(`${path} -> ${dest}`)
+  fs.renameSync(path, dest)
 }
