@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+
+    <!--
+      mobile friendly
+      https://developer.mozilla.org/en-US/docs/Mozilla/Mobile/Viewport_meta_tag
+      https://developers.google.com/web/fundamentals/design-and-ux/responsive/
+    -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Innertube</title>
+  </head>
+  <body>
+    <p><a href="<%= link %>" download>download</a></p>
+    <% Object.keys(tags).forEach(function (key) { %>
+      <p>
+        <%= key %>:
+        <% if (typeof tags[key] != 'string') { %>
+          <pre><%= JSON.stringify(tags[key], null, 2) %></pre>
+        <% } else { %>
+          <%= tags[key] %>
+        <% } %>
+      </p>
+    <% }) %>
+    <p>cover:</p><img src="<%= cover %>">
+  </body>
+</html>
