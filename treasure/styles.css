@@ -1,0 +1,55 @@
+@page {
+	margin: 0;
+}
+.container {
+	font: 11pt 'Yeon Sung', Times;
+	text-align: center;
+}
+.card {
+	/* inline-block so cards can keep their height+width and still wrap */
+	display: inline-block;
+	vertical-align: middle;
+	margin-bottom: 4pt;
+	outline: thin solid gray;
+	padding: 2pt;
+	/* width & height set to fit US letter paper */
+	width: 140pt;
+	height: 186pt;
+}
+.rules {
+	outline: none;
+}
+.instructions {
+	text-align: left;
+}
+.rules > .instructions {
+	margin-top: 8pt;
+}
+.title {
+	position: absolute; /* over top of image */
+	text-align: left;
+	margin-left: 2pt;
+}
+.rank {
+	font-size: xx-large;
+	font-weight: bold;
+}
+.name {
+	font-weight: bold;
+	text-decoration: underline;
+}
+.game {
+	font-size: xx-large;
+}
+.logo {
+	margin-top: 8pt;
+}
+.logo > img {
+	width: 75%;
+}
+.image {
+	text-align: right;
+}
+.image > img {
+	width: 75%;
+}
