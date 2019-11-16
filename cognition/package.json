@@ -19,7 +19,7 @@
     "gulp-less": "^3.0.3",
     "gulp-minify-css": "^1.2.1",
     "gulp-replace": "^0.5.4",
-    "jquery": "^2.1.4",
+    "jquery": "^3.4.1",
     "mongoose": "^4.1.0",
     "serve-favicon": "^2.3.0",
     "serve-index": "^1.7.1"
