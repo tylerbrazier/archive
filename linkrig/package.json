@@ -8,7 +8,7 @@
     "test": "node tests.js"
   },
   "devDependencies": {
-    "eslint": "4.14.0",
+    "eslint": "6.6.0",
     "eslint-config-tylerbrazier": "0.0.6"
   }
 }
