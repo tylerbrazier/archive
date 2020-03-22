@@ -1,0 +1,54 @@
+Earl			Guild Artisan (Alchemist)	Level 1
+Rock Gnome Wizard	Lawful Good			Exp: 0
+
+HP (max 8): 8
+
+Hit dice (1d6): 1
+
+Str 8   (-1)
+Dex 14  (+2)
+Con 1+13(+2)
+Int 2+15(+3)
+Wis 12  (+1)
+Cha 10  (+0)
+Proficiency bonus +2
+AC 12 (10 + Dex modifier)
+
+Speed 25, Size small, 3'4" 40lb. Age 55, Languages: Common, Gnomish, Goblin
+
+Proficiencies:
+- Armor: none
+- Weapons: daggers, darts, slings, quarterstaffs, light crossbows
+- Tools: artisan's alchemist's supplies, tinker's tools
+- Saves: Intelligence, Wisdom
+- Skills: History, Investigation, Insight, Persuasion
+
+Features:
+- Spellcasting: (PHB 58)
+  + spellbook starts with 6 level 1 wizard spells.
+  + add two spells to book for free on level up (must be spells of level that I have slots for).
+  + can copy found spell to book for 2h and 50gp per spell level (PHB 114).
+  + prepare Int mod + level wizard spells from spellbook, can change after long rest.
+  + spell attack mod = proficiency bonus + Int modifier.
+  + spell save DC = 8 + proficiency bonus + Int modifier.
+  + rituals: +10m to cast but doesn't spend spell slot, can be unprepared but must be in spellbook.
+- Arcane Recovery: once per day on short rest, can recover spell slots w/ combined level <= half my level (round up); can't recover slots of level 6 or higher.
+- Artificer's Lore: double proficiency bonus for Int(History) checks related to magic items, alchemical objects, or technological devices.
+- Tinker: (PHB 37) prof with tinker's tools; using these and 1h, 10gp worth of materials to construct Tiny 5AC 1HP clockwork device lasting 24h (unless repaired by spending 1h) or action to dismantle, reclaiming materials; can have 3 devices at once; can make Clockwork Toy, Fire Starter or Music Box (see PHB 37).
+- Guild Membership: (PHB 132) Alchemists and Apothecaries business; fellow members will provide lodging, food, my funeral payment and support for defendable crime accusations; access to guild hall and political figures thru guild (may require donation); membership cost 5gp/mo, can pay missed payments later.
+
+Personality:
+- I'm fascinated by explosives and machinery, and curious how things work.
+- I joined alchemist's guild to learn, started adventuring for the experience.
+- Ideal: Knowledge is power; I want to be a contributing member of society by making discoveries.
+- Bond: My mentor who taught me everything I know.
+- Flaw: I can be reckless in speech or manner when I get excited.
+
+Equipment:
+- Dagger: 1d4 piercing, finesse, light, thrown, range 20/60, 1lb.
+- Spellbook, component pouch, guild introduction letter, traveler's clothes, pouch w/ 15gp.
+- Alchemist's supplies (artisan's tools).
+- Explorer's pack (59lb total): backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days rations, waterskin, 50ft hempen rope.
+
+Spell slots:
+- 1st: 2

@@ -1,0 +1,53 @@
+Friar George		Acolyte			Level 1
+Human Cleric		Lawful Good		Exp: 0
+
+HP (max 10): 10
+
+Hit dice (1d8): 1
+
+Str 1+13(+2)
+Dex 1+8 (-1)
+Con 1+14(+2)
+Int 1+10(+0)
+Wis 1+15(+3)
+Cha 1+12(+1)
+Proficiency bonus +2
+AC 16+2
+
+Speed 30, Size Medium, 6'1" 250lb. Age 47, Languages: Common, Dwarvish, Celestial, Primordial
+
+Proficiencies:
+- Armor: light, medium, heavy (Life Domain), shields
+- Weapons: Simple weapons
+- Tools: none
+- Saves: Wisdom, Charisma
+- Skills: History, Medicine, Insight, Religion
+
+Features:
+- Spellcasting: (PHB 58)
+  + prepare Wis mod + level cleric spells in addition to spells from domain.
+  + spell attack mod = proficiency bonus + Wis modifier.
+  + spell save DC = 8 + proficiency bonus + Wis modifier.
+  + rituals: +10m to cast but doesn't spend spell slot, must still be prepared.
+- Shelter of the Faithful: free healing at associated temple (still must provide spell materials), modest lifestyle support from brothers, assistance from brothers at my original temple.
+- Life Domain
+  + Spells: bless, cure wounds
+  + Disciple of Life: 1st level spells or higher heal for extra 2 + spell's level.
+
+Personality:
+- Jolly fellow who likes to have a good time and wants the best for everyone.
+- Being stuck at the monastery is no fun, left for adventure and to help other people out there.
+- Ideal: Don't be greedy; once you have all you need, the rest can go to people who don't have.
+- Bond: I'm bound to my God; I try my best to love him.
+- Flaw: I like parties and food and beer a bit more than I should.
+
+Equipment:
+- Mace: 1d6 bludgeoning, 4lb.
+- Light crossbow (20 bolts): 1d8 piercing, 5lb, ammunition, range 80/320, loading, two-handed.
+- Chain mail: 16AC, Str 13, Stealth Disadvantage, 55lb.
+- Shield: +2 AC, 6lb.
+- Prayer book (Bible), 2 Holy symbols, 5 sticks of incense, vestments, common clothes, pouch w/ 15gp.
+- Explorer's pack (59lb total): backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days rations, waterskin, 50ft hempen rope.
+
+Spell slots:
+- 1st: 2

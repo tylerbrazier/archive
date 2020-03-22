@@ -1,0 +1,23 @@
+Spells (PHB 201) for copy/pasting into new character sheets
+
+BLADE WARD: Abjuration cantrip, Casting Time:1 action, Range:Self, Components:VS, Duration:1 round
+You extend your hand and trace a sigil of warding in the air. Until the end of your next turn, you have resistance against bludgeoning, piercing, and slashing damage dealt by weapon attacks.
+
+MAGE HAND: Conjuration cantrip, Casting Time:1 action, Range 30ft, Components:VS, Duration:1 minute
+A spectral, floating hand appears at a point you choose within range. The hand lasts for the duration or until you dismiss it as an action. The hand vanishes if it is ever more than 30 feet away from you or if you cast this spell again.
+You can use your action to control the hand. You can use the hand to manipulate an object, open an unlocked door or container, stow or retrieve an item from an open container, or pour the contents out of a vial. You can move the hand up to 30 feet each time you use it.
+The hand can't attack, activate magic items, or carry more than 10 pounds.
+
+RAY OF FROST: Evocation cantrip, Casting Time:1 action, Range:60ft, Components:VS, Duration:Instantaneous
+A frigid beam of blue-white light streaks toward a creature within range. Make a ranged spell attack against the target. On a hit, it takes 1d8 cold damage, and its speed is reduced by 10 feet until the start of your next turn.
+The spell's damage increases by 1d8 when you reach 5th level (2d8), 11th level (3d8), and 17th level (4d8).
+
+TRUE STRIKE: Divination cantrip, Casting Time:1 action, Range:30ft, Components:S, Duration:Concentration up to 1 round
+You point a finger at a target in range. Your magic grants you a brief insight into the target's defenses. On your next turn, you gain advantage on your first attack roll against the target, provided that this spell hasn't ended.
+
+MAGIC MISSILE: L1 Evocation, Casting Time:1 action, Range:120ft, Components:VS, Duration:Instantaneous
+You create three glowing darts of magical force. Each dart hits a creature of your choice that you can see within range. A dart deals 1d4 + 1 force damage to its target. The darts all strike simultaneously, and you can direct them to hit one creature or several.
+At Higher Levels. When you cast this spell using a spell slot of 2nd level or higher, the spell creates one more dart for each slot level above 1st.
+
+SHIELD: L1 Abjuration, Casting Time:1 reaction which you take when you are hit by an attack or targeted by the magic missile spell, Range:Self, Components:VS, Duration:1 round
+An invisible barrier of magical force appears and protects you. Until the start of your next turn, you have a +5 bonus to AC, including against the triggering attack, and you take no damage from magic missile.

@@ -1,0 +1,17 @@
+Equipment packs (PHB 151) for copy/pasting into new character sheets
+
+- Burglar's pack (16gp, 47.5lb total): backpack, bag of 1000 ball bearings, 10ft of string, bell, 5 candles, crowbar, hammer, 10 pitons, hooded lantern, 2 flasks of oil, 5 days rations, tinderbox, waterskin, 50ft hempen rope.
+
+- Diplomat's pack (39gp, 36lb total): chest, 2 cases for maps and scrolls, set of fine clothes, bottle of ink, ink pen, lamp, 2 flasks of oil, 5 sheets of paper, vial of perfume, sealing wax, soap.
+
+- Dungeoneer's pack (12gp, 61.5lb total): backpack, crowbar, hammer, 10 pitons, 10 torches, tinderbox, 10 days rations, waterskin, 50ft hempen rope.
+
+- Entertainer's pack (40gp, 34lb total): backpack, bedroll, 2 costumes, 5 candles, 5 days rations, waterskin, disguise kit.
+
+- Explorer's pack (10gp, 59lb total): backpack, bedroll, mess kit, tinderbox, 10 torches, 10 days rations, waterskin, 50ft hempen rope.
+
+- Priest's pack (19gp, 18lb total): backpack, blanket, 10 candles, tinderbox, alms box, 2 blocks of incense, censer, vestments, 2 days rations, waterskin.
+
+- Scholar's pack (40gp, 10lb total): backpack, book of lore, bottle of ink, ink pen, 10 sheets of parchment, little bag of sand, small knife.
+
+(Some packs include items not listed in Adventuring Gear table (PHB 150) or Tools table (PHB 154) so the pack weight totals don't count those items.)
