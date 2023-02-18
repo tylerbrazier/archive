@@ -1,0 +1,4 @@
+Simulations for finding approximate probabilities of card hands.
+
+For a pair:
+	node --test-only pair.mjs
