@@ -1,4 +1,5 @@
-export { createDeck, shuffle, deal }
+export { createDeck, shuffle, deal, simulate }
+import { format } from 'node:util'
 
 function createDeck() {
 	const deck = []
@@ -32,4 +33,16 @@ function shuffle(deck) {
 // removes and returns n elements from deck
 function deal(deck, n) {
 	return deck.splice(0, n)
+}
+
+// Calls fn(hand) n times with handSize random cards and counts the number
+// of truthy returns. A message with the results is returned.
+function simulate(fn, n = 1000000, handSize = 5) {
+	var successCount = 0
+	for (var i = 0; i < n; i++) {
+		const hand = deal(shuffle(createDeck()), handSize)
+		if (fn(hand)) successCount++
+	}
+	return format('success/total (%d/%d) = %d',
+		successCount, n, successCount/n)
 }

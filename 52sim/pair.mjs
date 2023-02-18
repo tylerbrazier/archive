@@ -1,5 +1,4 @@
-import { createDeck, shuffle, deal } from './deck.mjs'
-import { format } from 'node:util'
+import { simulate } from './base.mjs'
 import test from 'node:test'
 import assert from 'node:assert'
 
@@ -14,16 +13,7 @@ function containsPair(hand) {
 
 // to run only this: node --test-only ...
 test('probability hand contains pair', {only:true}, t => {
-	const runCount = 100000
-	var successCount = 0
-	const handSize = 5
-	for (var i = 0; i < runCount; i++) {
-		const hand = deal(shuffle(createDeck()), handSize)
-		var pair = containsPair(hand)
-		if (pair) successCount++
-	}
-	t.diagnostic(format('success/total (%d/%d) = %d',
-		successCount, runCount, successCount/runCount))
+	t.diagnostic(simulate(hand => containsPair(hand)))
 })
 
 test('containsPair', async t => {
