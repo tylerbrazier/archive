@@ -1,10 +1,17 @@
 Simulations for finding approximate probabilities of (5) card hands.
 
-	node pair.mjs # pair ~= 0.49
+	node pair.mjs	# pair ~= 0.49 (49% chance)
 
 	node suits.mjs	# 2 of same suit = 1
 			# 3 of same suit ~= 0.37 (37% chance)
 			# 4 of same suit ~= 0.04 (4% chance)
 			# 5 of same suit ~= 0.002 (0.2% chance)
 
+	node run.js	# Run of 3: ~22% (25% when Aces are high and low)
+			# Run of 4: ~3% (4% when Aces are high and low)
+			# Run of 5: ~0.3% (0.5% when Aces are high and low)
+
 To run unit tests: node --test
+
+The math behind finding acutal probabilities:
+https://brilliant.org/wiki/math-of-poker/
