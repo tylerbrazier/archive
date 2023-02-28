@@ -1,14 +1,22 @@
 export { createDeck, shuffle, deal, simulate }
 import { format } from 'node:util'
 
-function createDeck() {
+function createDeck(ranks = ['A','J','Q','K']) {
 	const deck = []
-	const ranks = ['A', 'J', 'Q', 'K']
 	for (var i = 2; i <= 10; i++) ranks.push(i)
 	const suits = ['c', 's', 'h', 'd']
 	for (var rank of ranks)
 		for (var suit of suits)
 			deck.push({ rank, suit })
+	return deck
+}
+
+// a deck with 2 red kings and 38 other random cards that aren't kings
+function create40() {
+	const pool = shuffle(createDeck(['A','J','Q']))
+	const deck = deal(pool, 38)
+	deck.push({rank:'K', suit:'h'})
+	deck.push({rank:'K', suit:'d'})
 	return deck
 }
 
@@ -40,7 +48,7 @@ function deal(deck, n) {
 function simulate(fn, n = 1000000, handSize = 5) {
 	var successCount = 0
 	for (var i = 0; i < n; i++) {
-		const hand = deal(shuffle(createDeck()), handSize)
+		const hand = deal(shuffle(create40()), handSize)
 		if (fn(hand)) successCount++
 	}
 	console.log(format('success/total (%d/%d) = %d',

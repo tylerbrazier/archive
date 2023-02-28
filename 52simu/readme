@@ -1,4 +1,5 @@
 Simulations for finding approximate probabilities of (5) card hands.
+For a 52 card deck:
 
 	node set.mjs	# pair ~= 0.49 (49% chance)
 			# 3 of a kind ~= 0.022 (2% chance)
@@ -12,6 +13,29 @@ Simulations for finding approximate probabilities of (5) card hands.
 	node run.js	# Run of 3: ~22% (25% when Aces are high and low)
 			# Run of 4: ~3% (4% when Aces are high and low)
 			# Run of 5: ~0.3% (0.5% when Aces are high and low)
+
+For a 40 card with two red kings and no black kings:
+
+	Pair: success/total (491769/1000000) = 0.491769
+	Three of a kind: success/total (22838/1000000) = 0.022838
+	Four of a kind: success/total (254/1000000) = 0.000254
+
+	3 of same suit: success/total (371542/1000000) = 0.371542
+	4 of same suit: success/total (44680/1000000) = 0.04468
+	5 of same suit: success/total (1979/1000000) = 0.001979
+
+	Run size 3:
+	Aces low only: success/total (231252/1000000) = 0.231252
+	Aces high only: success/total (224667/1000000) = 0.224667
+	Aces high and low: success/total (256591/1000000) = 0.256591
+	Run size 4:
+	Aces low only: success/total (40974/1000000) = 0.040974
+	Aces high only: success/total (39068/1000000) = 0.039068
+	Aces high and low: success/total (48536/1000000) = 0.048536
+	Run size 5:
+	Aces low only: success/total (3873/1000000) = 0.003873
+	Aces high only: success/total (3847/1000000) = 0.003847
+	Aces high and low: success/total (5117/1000000) = 0.005117
 
 To run unit tests: node --test
 
