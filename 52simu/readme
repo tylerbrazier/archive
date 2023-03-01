@@ -26,6 +26,7 @@ For a 40 card with two red kings and no black kings:
 	3 of same suit: 371542/1000000 = 0.371542
 	4 of same suit: 44680/1000000 = 0.04468
 	5 of same suit: 1979/1000000 = 0.001979
+	6 of same suit (6 card hand): 345/1000000 = 0.000345
 
 	Run size 3:
 	Aces low only: 231252/1000000 = 0.231252
@@ -39,6 +40,10 @@ For a 40 card with two red kings and no black kings:
 	Aces low only: 3873/1000000 = 0.003873
 	Aces high only: 3847/1000000 = 0.003847
 	Aces high and low: 5117/1000000 = 0.005117
+	Run size 6 (6 card hand):
+	Aces low only: 1823/1000000 = 0.001823
+	Aces high only: 1741/1000000 = 0.001741
+	Aces high and low: 2613/1000000 = 0.002613
 
 To run unit tests: node --test
 

@@ -47,15 +47,16 @@ function nextRankInSequence(card, acesLow, acesHigh) {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-	for (var runSize = 3; runSize <= 5; runSize++) {
+	for (var runSize = 3; runSize <= 6; runSize++) {
+		var handSize = (runSize <= 5 ? 5 : runSize)
 		console.log('Run size %d:', runSize)
 		process.stdout.write('Aces low only: ')
-		simulate(hand => containsRun(hand, runSize, true, false))
+		simulate(hand => containsRun(hand, runSize, true, false), handSize)
 
 		process.stdout.write('Aces high only: ')
-		simulate(hand => containsRun(hand, runSize, false, true))
+		simulate(hand => containsRun(hand, runSize, false, true), handSize)
 
 		process.stdout.write('Aces high and low: ')
-		simulate(hand => containsRun(hand, runSize, true, true))
+		simulate(hand => containsRun(hand, runSize, true, true), handSize)
 	}
 }

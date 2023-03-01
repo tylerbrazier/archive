@@ -24,4 +24,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
 
 	process.stdout.write('5 of same suit: ')
 	simulate(hand => nSameSuit(hand, 5))
+
+	process.stdout.write('6 of same suit (6 card hand): ')
+	simulate(hand => nSameSuit(hand, 6), 6)
 }
