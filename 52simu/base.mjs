@@ -45,12 +45,11 @@ function deal(deck, n) {
 
 // Calls fn(hand) n times with handSize random cards and counts the number
 // of truthy returns, then prints the results.
-function simulate(fn, n = 1000000, handSize = 5) {
+function simulate(fn, handSize = 5, n = 1000000) {
 	var successCount = 0
 	for (var i = 0; i < n; i++) {
 		const hand = deal(shuffle(create40()), handSize)
 		if (fn(hand)) successCount++
 	}
-	console.log(format('success/total (%d/%d) = %d',
-		successCount, n, successCount/n))
+	console.log(format('%d/%d = %d', successCount, n, successCount/n))
 }
