@@ -1,4 +1,4 @@
-export default nSameSuit
+export { nSameSuit, containsEverySuit }
 import { simulate } from './base.mjs'
 import { fileURLToPath } from 'node:url'
 
@@ -12,19 +12,28 @@ function nSameSuit(hand, n) {
 	return false
 }
 
+function containsEverySuit(hand) {
+	const suits = {c:false, s:false, h:false, d:false}
+	for (var card of hand) suits[card.suit] = true
+	return (Object.values(suits).filter(v => v).length === 4)
+}
+
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-	process.stdout.write('2 of same suit: ')
-	simulate(hand => nSameSuit(hand, 2))
+	// process.stdout.write('2 of same suit: ')
+	// simulate(hand => nSameSuit(hand, 2))
 
-	process.stdout.write('3 of same suit: ')
-	simulate(hand => nSameSuit(hand, 3))
+	// process.stdout.write('3 of same suit: ')
+	// simulate(hand => nSameSuit(hand, 3))
 
-	process.stdout.write('4 of same suit: ')
-	simulate(hand => nSameSuit(hand, 4))
+	// process.stdout.write('4 of same suit: ')
+	// simulate(hand => nSameSuit(hand, 4))
 
-	process.stdout.write('5 of same suit: ')
-	simulate(hand => nSameSuit(hand, 5))
+	// process.stdout.write('5 of same suit: ')
+	// simulate(hand => nSameSuit(hand, 5))
 
-	process.stdout.write('6 of same suit (6 card hand): ')
-	simulate(hand => nSameSuit(hand, 6), 6)
+	// process.stdout.write('6 of same suit (6 card hand): ')
+	// simulate(hand => nSameSuit(hand, 6), 6)
+
+	process.stdout.write('5 card hand contains every suit: ')
+	simulate(hand => containsEverySuit(hand), 5)
 }

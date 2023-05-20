@@ -1,4 +1,4 @@
-import nSameSuit from './suits.mjs'
+import { nSameSuit, containsEverySuit } from './suits.mjs'
 import test from 'node:test'
 import assert from 'node:assert'
 
@@ -45,5 +45,28 @@ test('nSameSuit', async t => {
 			{ rank:8, suit:'s' },
 		]
 		assert.deepStrictEqual(nSameSuit(hand, 3), expected)
+	})
+})
+
+test('containsEverySuit', async t => {
+	await t.test('true when hand does have', t => {
+		var hand = [
+			{ rank:'A', suit:'d' },
+			{ rank:8, suit:'h' },
+			{ rank:'K', suit:'s' },
+			{ rank:8, suit:'s' },
+			{ rank:10, suit:'c' },
+		]
+		assert(containsEverySuit(hand))
+	})
+	await t.test('false when hand does not have', t => {
+		var hand = [
+			{ rank:'A', suit:'c' },
+			{ rank:8, suit:'h' },
+			{ rank:'K', suit:'s' },
+			{ rank:8, suit:'s' },
+			{ rank:10, suit:'c' },
+		]
+		assert(!containsEverySuit(hand))
 	})
 })

@@ -9,14 +9,15 @@ For a 52 card deck:
 	3 of same suit ~= 0.37 (37% chance)
 	4 of same suit ~= 0.044 (4% chance)
 	5 of same suit ~= 0.002 (0.2% chance)
+	5 card hand contains every suit: 0.263735
 
 	Run of 3: ~22% (25% when Aces are high and low)
 	Run of 4: ~3% (4% when Aces are high and low)
 	Run of 5: ~0.3% (0.5% when Aces are high and low)
 
-	Marriage (K&Q): 99705/1000000 = 0.099705
-	Marriage or Bezique (K&Q | J&Q): 176566/1000000 = 0.176566
-	Any two different faces: 253054/1000000 = 0.253054
+	Marriage (K&Q): 0.099705
+	Marriage or Bezique (K&Q | J&Q): 0.176566
+	Any two different faces: 0.253054
 
 For a 40 card with two red kings and no black kings:
 
