@@ -48,7 +48,7 @@ function deal(deck, n) {
 function simulate(fn, handSize = 5, n = 1000000) {
 	var successCount = 0
 	for (var i = 0; i < n; i++) {
-		const hand = deal(shuffle(create40()), handSize)
+		const hand = deal(shuffle(createDeck()), handSize)
 		if (fn(hand)) successCount++
 	}
 	console.log(format('%d/%d = %d', successCount, n, successCount/n))
