@@ -6,7 +6,7 @@ import {
 	containsAnyTwoDifferent
 } from './faces.mjs'
 
-test('faces', async t => {
+test('containsMarriage', async t => {
 	await t.test('does contain marriage', t => {
 		var hand = [
 			{ rank:'A', suit:'s' },
@@ -27,8 +27,10 @@ test('faces', async t => {
 		]
 		assert(!containsMarriage(hand))
 	})
+})
 
-	await t.test('containsMarriageOrBezique works for marriage', t => {
+test('containsMarriageOrBezique', async t => {
+	await t.test('works for marriage', t => {
 		var hand = [
 			{ rank:'A', suit:'s' },
 			{ rank:8, suit:'h' },
@@ -38,7 +40,7 @@ test('faces', async t => {
 		]
 		assert(containsMarriageOrBezique(hand))
 	})
-	await t.test('containsMarriageOrBezique works for bezique', t => {
+	await t.test('works for bezique', t => {
 		var hand = [
 			{ rank:'A', suit:'s' },
 			{ rank:8, suit:'h' },
@@ -48,7 +50,7 @@ test('faces', async t => {
 		]
 		assert(containsMarriageOrBezique(hand))
 	})
-	await t.test('containsMarriageOrBezique false if neither', t => {
+	await t.test('false if neither', t => {
 		var hand = [
 			{ rank:'A', suit:'s' },
 			{ rank:8, suit:'h' },
@@ -58,8 +60,10 @@ test('faces', async t => {
 		]
 		assert(!containsMarriageOrBezique(hand))
 	})
+})
 
-	await t.test('containsAnyTwoDifferent works for marriage', t => {
+test('containsAnyTwoDifferent ', async t => {
+	await t.test('works for marriage', t => {
 		var hand = [
 			{ rank:'A', suit:'s' },
 			{ rank:8, suit:'h' },
@@ -69,7 +73,7 @@ test('faces', async t => {
 		]
 		assert(containsAnyTwoDifferent(hand))
 	})
-	await t.test('containsAnyTwoDifferent works for bezique', t => {
+	await t.test('works for bezique', t => {
 		var hand = [
 			{ rank:'A', suit:'s' },
 			{ rank:8, suit:'h' },
@@ -79,7 +83,7 @@ test('faces', async t => {
 		]
 		assert(containsAnyTwoDifferent(hand))
 	})
-	await t.test('containsAnyTwoDifferent works for king and jack', t => {
+	await t.test('works for king and jack', t => {
 		var hand = [
 			{ rank:'J', suit:'s' },
 			{ rank:8, suit:'h' },
@@ -89,7 +93,7 @@ test('faces', async t => {
 		]
 		assert(containsAnyTwoDifferent(hand))
 	})
-	await t.test('containsAnyTwoDifferent false if one face card', t => {
+	await t.test('false if one face card', t => {
 		var hand = [
 			{ rank:'A', suit:'s' },
 			{ rank:8, suit:'h' },
@@ -99,7 +103,7 @@ test('faces', async t => {
 		]
 		assert(!containsAnyTwoDifferent(hand))
 	})
-	await t.test('containsAnyTwoDifferent false if same face card', t => {
+	await t.test('false if same face card', t => {
 		var hand = [
 			{ rank:'A', suit:'s' },
 			{ rank:8, suit:'h' },
