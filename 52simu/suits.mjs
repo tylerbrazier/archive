@@ -1,4 +1,4 @@
-export { nSameSuit, containsEverySuit }
+export { nSameSuit, nDifferentSuits }
 import { simulate } from './base.mjs'
 import { fileURLToPath } from 'node:url'
 
@@ -12,10 +12,11 @@ function nSameSuit(hand, n) {
 	return false
 }
 
-function containsEverySuit(hand) {
+function nDifferentSuits(hand, n) {
+	if (!n) throw Error('no n')
 	const suits = {c:false, s:false, h:false, d:false}
 	for (var card of hand) suits[card.suit] = true
-	return (Object.values(suits).filter(v => v).length === 4)
+	return (Object.values(suits).filter(v => v).length >= n)
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
@@ -35,5 +36,8 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
 	// simulate(hand => nSameSuit(hand, 6), 6)
 
 	process.stdout.write('5 card hand contains every suit: ')
-	simulate(hand => containsEverySuit(hand), 5)
+	simulate(hand => nDifferentSuits(hand, 4), 5)
+
+	process.stdout.write('5 card hand contains 3 different suits: ')
+	simulate(hand => nDifferentSuits(hand, 3), 5)
 }

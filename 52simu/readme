@@ -9,7 +9,8 @@ For a 52 card deck:
 	3 of same suit ~= 0.37 (37% chance)
 	4 of same suit ~= 0.044 (4% chance)
 	5 of same suit ~= 0.002 (0.2% chance)
-	5 card hand contains every suit: 0.263735
+	contains every suit: 0.263735 (26% chance)
+	contains 3 different suits: 0.851837 (85% chance)
 
 	Run of 3: ~22% (25% when Aces are high and low)
 	Run of 4: ~3% (4% when Aces are high and low)
