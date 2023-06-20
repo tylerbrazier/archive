@@ -51,5 +51,5 @@ function simulate(fn, handSize = 5, n = 1000000) {
 		const hand = deal(shuffle(createDeck()), handSize)
 		if (fn(hand)) successCount++
 	}
-	console.log(format('%d/%d = %d', successCount, n, successCount/n))
+	console.log(((successCount/n)*100).toFixed(2)+'%')
 }

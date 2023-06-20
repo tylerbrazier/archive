@@ -20,24 +20,30 @@ function nDifferentSuits(hand, n) {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-	// process.stdout.write('2 of same suit: ')
-	// simulate(hand => nSameSuit(hand, 2))
+	for (var h=5; h<=7; h++) {
+		console.log(h, 'card hand:')
 
-	// process.stdout.write('3 of same suit: ')
-	// simulate(hand => nSameSuit(hand, 3))
+		process.stdout.write('2 of same suit: ')
+		simulate(hand => nSameSuit(hand, 2), h)
 
-	// process.stdout.write('4 of same suit: ')
-	// simulate(hand => nSameSuit(hand, 4))
+		process.stdout.write('3 of same suit: ')
+		simulate(hand => nSameSuit(hand, 3), h)
 
-	// process.stdout.write('5 of same suit: ')
-	// simulate(hand => nSameSuit(hand, 5))
+		process.stdout.write('4 of same suit: ')
+		simulate(hand => nSameSuit(hand, 4), h)
 
-	// process.stdout.write('6 of same suit (6 card hand): ')
-	// simulate(hand => nSameSuit(hand, 6), 6)
+		process.stdout.write('5 of same suit: ')
+		simulate(hand => nSameSuit(hand, 5), h)
 
-	process.stdout.write('5 card hand contains every suit: ')
-	simulate(hand => nDifferentSuits(hand, 4), 5)
+		process.stdout.write('Contains 3 different suits: ')
+		simulate(hand => nDifferentSuits(hand, 3), h)
 
-	process.stdout.write('5 card hand contains 3 different suits: ')
-	simulate(hand => nDifferentSuits(hand, 3), 5)
+		process.stdout.write('Contains every suit: ')
+		simulate(hand => nDifferentSuits(hand, 4), h)
+
+		process.stdout.write('Is all one suit: ')
+		simulate(hand => nSameSuit(hand, h), h)
+
+		console.log()
+	}
 }

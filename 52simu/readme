@@ -1,24 +1,62 @@
-Simulations for finding approximate probabilities of (5) card hands.
+Simulations for finding approximate probabilities of melds.
 For a 52 card deck:
 
-	pair ~= 0.49 (49% chance)
-	3 of a kind ~= 0.022 (2% chance)
-	4 of a kind ~= 0.0002 (0.02% chance)
-	(two pair ~= 0.047 (4.7% chance, from the link below))
+	5 card hand:
+	Pair: 49.27%
+	Three of a kind: 2.29%
+	Four of a kind: 0.02%
+	Two Pair: 4.83%
+	2 of same suit: 100.00%
+	3 of same suit: 37.02%
+	4 of same suit: 4.48%
+	5 of same suit: 0.19%
+	Contains 3 different suits: 85.20%
+	Contains every suit: 26.38%
+	Is all one suit: 0.20%
+	Run of 3 (Aces low): 22.12%
+	Run of 4 (Aces low): 3.71%
+	Run of 5 (Aces low): 0.36%
+	Marriage (K&Q): 0.100 (10% chance)
+	Marriage or Bezique (K&Q | J&Q): 0.176566 (17% chance)
+	Any two different faces: 0.253054 (25% chance)
 
-	3 of same suit ~= 0.37 (37% chance)
-	4 of same suit ~= 0.044 (4% chance)
-	5 of same suit ~= 0.002 (0.2% chance)
-	contains every suit: 0.263735 (26% chance)
-	contains 3 different suits: 0.851837 (85% chance)
+	6 card hand:
+	Pair: 65.50%
+	Three of a kind: 4.47%
+	Four of a kind: 0.08%
+	Two Pair: 12.96%
+	2 of same suit: 100.00%
+	3 of same suit: 60.37%
+	4 of same suit: 11.44%
+	5 of same suit: 1.02%
+	Contains 3 different suits: 93.26%
+	Contains every suit: 42.66%
+	Is all one suit: 0.03%
+	Run of 3 (Aces low): 36.31%
+	Run of 4 (Aces low): 9.11%
+	Run of 5 (Aces low): 1.63%
+	Run of 6 (Aces low): 0.16%
+	Three Pair (6 card hand): 0.30%
 
-	Run of 3: ~22% (25% when Aces are high and low)
-	Run of 4: ~3% (4% when Aces are high and low)
-	Run of 5: ~0.3% (0.5% when Aces are high and low)
+	7 card hand:
+	Pair: 78.99%
+	Three of a kind: 7.67%
+	Four of a kind: 0.17%
+	Two Pair: 25.62%
+	2 of same suit: 100.00%
+	3 of same suit: 81.54%
+	4 of same suit: 22.64%
+	5 of same suit: 3.07%
+	Contains 3 different suits: 97.06%
+	Contains every suit: 56.91%
+	Is all one suit: 0.00%
+	Run of 3 (Aces low): 51.05%
+	Run of 4 (Aces low): 16.88%
+	Run of 5 (Aces low): 4.38%
+	Run of 6 (Aces low): 0.82%
+	Run of 7 (Aces low): 0.08%
 
-	Marriage (K&Q): 0.099705
-	Marriage or Bezique (K&Q | J&Q): 0.176566
-	Any two different faces: 0.253054
+	Four Pair (8 card hand): 6.31%
 
 For a 40 card with two red kings and no black kings:
 
