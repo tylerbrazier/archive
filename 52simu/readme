@@ -13,6 +13,7 @@ For a 52 card deck:
 	Contains 3 different suits: 85.20%
 	Contains every suit: 26.38%
 	Is all one suit: 0.20%
+	Run of 2 (Aces low): 78.52%
 	Run of 3 (Aces low): 22.12%
 	Run of 4 (Aces low): 3.71%
 	Run of 5 (Aces low): 0.36%
@@ -32,6 +33,7 @@ For a 52 card deck:
 	Contains 3 different suits: 93.26%
 	Contains every suit: 42.66%
 	Is all one suit: 0.03%
+	Run of 2 (Aces low): 89.39%
 	Run of 3 (Aces low): 36.31%
 	Run of 4 (Aces low): 9.11%
 	Run of 5 (Aces low): 1.63%
@@ -50,6 +52,7 @@ For a 52 card deck:
 	Contains 3 different suits: 97.06%
 	Contains every suit: 56.91%
 	Is all one suit: 0.00%
+	Run of 2 (Aces low): 95.15%
 	Run of 3 (Aces low): 51.05%
 	Run of 4 (Aces low): 16.88%
 	Run of 5 (Aces low): 4.38%

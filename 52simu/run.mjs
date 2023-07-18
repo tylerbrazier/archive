@@ -1,3 +1,5 @@
+// TODO check for probability of all same suit
+
 export { containsRun, }
 import { simulate } from './base.mjs'
 import { fileURLToPath } from 'node:url'
@@ -49,7 +51,7 @@ function nextRankInSequence(card, acesLow, acesHigh) {
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
 	for (var h = 5; h <= 7; h++) {
 		console.log(h, 'card hand:')
-		for (var r = 3; r <= 7; r++) {
+		for (var r = 2; r <= 7; r++) {
 			if (r > h) continue;
 
 			process.stdout.write('Run of '+r+' (Aces low): ')
