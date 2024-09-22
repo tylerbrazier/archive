@@ -1,0 +1,8 @@
+There was a time when I tracked my spending using scripts in dotfiles/shortcuts
+and all the data was stored on CSV files on my phone. I'd use these awk scripts
+to make reports, etc. I stopped tracking every expense because it was a lot of
+overhead. If I need to go back to doing that again I can refer to these.
+
+I would use the generate_todo script to append lines to a file - one line per
+day in the month; that way I could schedule things in a notes file on my phone.
+I ended up going back to using paper.
